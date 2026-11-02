@@ -1,1 +1,208 @@
 
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Little Universe ♡</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Georgia, serif;
+  background: #fff5f8;
+  color: #815968;
+  text-align: center;
+}
+
+.page {
+  min-height: 100vh;
+  padding: 35px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.hidden { display: none; }
+
+h1 { font-size: 34px; }
+
+p {
+  line-height: 1.8;
+  max-width: 450px;
+}
+
+button, input {
+  padding: 13px 20px;
+  border-radius: 30px;
+  border: 1px solid #e9b9c9;
+  background: white;
+  color: #815968;
+  margin: 8px;
+  font-size: 15px;
+}
+
+button {
+  cursor: pointer;
+  background: #edc5d3;
+  border: none;
+}
+
+button:hover { background: #e8aebe; }
+
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 25px;
+  max-width: 480px;
+  width: 100%;
+  box-shadow: 0 8px 30px #e8c5d455;
+}
+
+.heart {
+  font-size: 55px;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  50% { transform: scale(1.15); }
+}
+
+img {
+  width: 100%;
+  border-radius: 18px;
+  margin: 10px 0;
+  object-fit: cover;
+}
+
+.small {
+  font-size: 12px;
+  color: #bd91a2;
+}
+</style>
+</head>
+
+<body>
+
+<section id="login" class="page">
+  <div class="card">
+    <div class="heart">♡</div>
+    <p>A little universe made just for you</p>
+    <h1>Hello, my favorite person.</h1>
+    <p>Masukkan PIN rahasia kita untuk masuk.</p>
+    <input id="pin" type="password" placeholder="Enter secret PIN">
+    <br>
+    <button onclick="checkPin()">Open my heart ♡</button>
+    <p id="error"></p>
+  </div>
+</section>
+
+<section id="home" class="page hidden">
+  <div class="card">
+    <p>WELCOME TO OUR LITTLE UNIVERSE</p>
+    <div class="heart">♡</div>
+    <h1>For My bb</h1>
+    <p>Some people make ordinary days feel extraordinary. You are one of them.</p>
+    <button onclick="showPage('letter')">Read my letter 💌</button>
+    <button onclick="showPage('gallery')">Our memories 📷</button>
+    <button onclick="showPage('message')">A little message ♡</button>
+    <br>
+    <button onclick="toggleMusic()">♫ Play / Pause Music</button>
+  </div>
+</section>
+
+<section id="letter" class="page hidden">
+  <div class="card">
+    <div class="heart">💌</div>
+    <h1>Dear My Love,</h1>
+    <p>
+      Thank you for coming into my life.
+      I never expected someone could make
+      my ordinary days feel this special.
+      <br><br>
+      Thank you for every little thing,
+      every laugh, every sweet word,
+      and every beautiful memory.
+      <br><br>
+      I hope we keep choosing each other,
+      learning together, and making
+      more memories along the way.
+      <br><br>
+      With love, always ♡
+    </p>
+    <button onclick="showPage('home')">Back ♡</button>
+  </div>
+</section>
+
+<section id="gallery" class="page hidden">
+  <div class="card">
+    <h1>Our Little Memories</h1>
+    <p>Every picture holds a little story of us.</p>
+
+    <img src="https://placehold.co/600x400/f7dce6/986879?text=Our+First+Photo" alt="Our memory">
+
+    <p class="small">A little piece of our forever.</p>
+    <button onclick="showPage('home')">Back ♡</button>
+  </div>
+</section>
+
+<section id="message" class="page hidden">
+  <div class="card">
+    <div class="heart">♡</div>
+    <h1>One Little Reminder</h1>
+    <p>
+      You are appreciated.
+      You are important.
+      And I am grateful for the moments
+      we get to share together.
+    </p>
+    <h2>I love our little universe.</h2>
+    <button onclick="showPage('home')">Back ♡</button>
+  </div>
+</section>
+
+<audio id="music" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const SECRET_PIN = "051026";
+
+function checkPin() {
+  const value = document.getElementById("pin").value;
+
+  if (value === SECRET_PIN) {
+    showPage("home");
+  } else {
+    document.getElementById("error").textContent =
+      "Oops! Try again, my love ♡";
+  }
+}
+
+function showPage(id) {
+  document.querySelectorAll(".page").forEach(page => {
+    page.classList.add("hidden");
+  });
+
+  document.getElementById(id).classList.remove("hidden");
+}
+
+function toggleMusic() {
+  const music = document.getElementById("music");
+
+  if (music.paused) {
+    music.play().catch(() => {
+      alert("Tambahkan file musik terlebih dahulu ya!");
+    });
+  } else {
+    music.pause();
+  }
+}
+</script>
+
+</body>
+</html>
+
